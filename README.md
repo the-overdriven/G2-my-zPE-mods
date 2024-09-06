@@ -1,5 +1,5 @@
 # G2-my-zPE-mods
-My tiny single file Gothic mods that don't deserve their own repository. Written in Daedalus scripting language. Runnable with zPE (zParserExtender/Union).
+My tiny single file Gothic mods that don't deserve separate repository. Written in Daedalus scripting language. Runnable with zPE (zParserExtender/Union).
 
 Possible thanks to [Daedalus Injection](https://gothic-modding-community.github.io/gmc/zengin/scripts/extenders/zparserextender/daedalus_injection/).
 
