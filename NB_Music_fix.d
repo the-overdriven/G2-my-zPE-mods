@@ -1,3 +1,8 @@
+/*
+For New Balance mod only.
+Restores Monastery and Pyramid original theme that was removed in New Balance.
+*/
+
 META
 {
     Parser = Music
