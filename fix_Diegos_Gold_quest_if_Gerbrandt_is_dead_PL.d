@@ -1,3 +1,10 @@
+/*
+In original Gothic 2 you are not able to finish Diego's Gold quest if Gerbrandt is dead, 
+because it's tightly coupled with another Diego's quest: Diego's Revenge. 
+This fix decouples these two quests, so that if Gerbrandt is dead he won't be even mentioned, 
+Diego's Gold quest will be finished upon delivery and Diego will move in to upper quarter.
+*/
+
 META
 {
     Parser = Game
