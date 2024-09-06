@@ -1,3 +1,8 @@
+/*
+Hides the glowing white ball from the Light spell (hovering over hero's head), 
+so that it doesn't obstruct the view.
+*/
+
 META
 {
     Parser = PFX
