@@ -1,3 +1,7 @@
+/* 
+Removes the cheesy magic glow from weapons and ammunition.
+*/
+
 META
 {
     Parser = VFX
