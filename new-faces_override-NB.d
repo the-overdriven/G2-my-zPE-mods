@@ -2,8 +2,10 @@
 Minor visual tweaks for New Heads mod, targeted exclusively for New Balance mod.
 - Nadja: restored original female body model and outfit
 - Cassia: restored original female body model and outfit
-- Lucia: uses new face to have a different one that Cassia and new outfit to have different one than Abigail, uses original body texture (skimpy fur, although in NB it looks different, but also interesting, so I decided to leave it like that)
-- one guard in upper town got brand new face (to prevent conflict with Abigail from New Balance)
+- Lucia: uses new face to have a different one that Cassia and new outfit to have different one than Abigail, 
+uses original body texture (skimpy fur, although in NB it looks different, 
+but also interesting, so I decided to leave it like that)
+- one guard in upper town received a brand new face (to prevent conflict with Abigail from New Balance)
 */
 
 META
