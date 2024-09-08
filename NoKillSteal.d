@@ -31,15 +31,6 @@ func void animateDead(var C_NPC npc)
         };
 
         npc.aivar[AIV_INVINCIBLE] = TRUE;
-
-        // invalidate monster routines, so that zs_mm_allscheduler doesn't start any when monster reappears
-        //npc.aivar[AIV_MM_SLEEPSTART] = 25;
-        //npc.aivar[AIV_MM_RESTSTART] = 25;
-        //npc.aivar[AIV_MM_ROAMSTART] = 25;
-        //npc.aivar[AIV_MM_EATGROUNDSTART] = 25;
-        //npc.aivar[AIV_MM_WUSELSTART] = 25;
-        //npc.aivar[AIV_MM_ORCSITSTART] = 25;
-        // doesnt seem to work
     };
 
     if (npc.aivar[AIV_INVINCIBLE] == TRUE) {
@@ -73,11 +64,6 @@ func int dropDeadIfOneHP(var C_NPC slf, var C_NPC oth)
 func int C_DropUnconscious()
 {
     // self = victim, other = winner
-
-    // if ((Npc_IsPlayer(self) == FALSE) && (isMonster(self) == FALSE) && isMonster(other)) {
-        // TODO: prevent killing NPC by monsters?
-    // };
-
     if (isMonster(self) && (Npc_IsPlayer(other) || other.aivar[AIV_PARTYMEMBER])) {
         // hero and his bros kill monsters always
 
@@ -98,15 +84,6 @@ func int C_DropUnconscious()
     C_DropUnconscious_old();
 };
 
-func void zs_attack()
-{
-    if(dropDeadIfOneHP(self, other))
-    {
-        return;
-    };
-    zs_attack_old();
-};
-
 func int zs_attack_loop()
 {
 
@@ -116,24 +93,6 @@ func int zs_attack_loop()
     };
 
     zs_attack_loop_old();
-};
-
-func void b_mm_assessenemy()
-{
-    if(dropDeadIfOneHP(self, other))
-    {
-        return;
-    };
-    b_mm_assessenemy_old();
-};
-
-func void zs_mm_attack()
-{
-    if(dropDeadIfOneHP(self, other))
-    {
-        return;
-    };
-    zs_mm_attack_old();
 };
 
 func int zs_mm_attack_loop()
