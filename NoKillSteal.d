@@ -45,7 +45,6 @@ func void animateDead(var C_NPC npc)
 
 func int dropDeadIfOneHP(var C_NPC slf, var C_NPC oth)
 {
-
     // monster is attacked
     if (isMonster(oth) && oth.attribute[ATR_HITPOINTS] == 1) {
         animateDead(oth);
@@ -86,7 +85,6 @@ func int C_DropUnconscious()
 
 func int zs_attack_loop()
 {
-
     if(dropDeadIfOneHP(self, other))
     {
         return LOOP_END;
@@ -103,7 +101,6 @@ func int zs_mm_attack_loop()
     };
     zs_mm_attack_loop_old();
 };
-
 
 func void b_attack(var C_NPC slf,var C_NPC oth,var int attack_reason,var int wait)
 {
