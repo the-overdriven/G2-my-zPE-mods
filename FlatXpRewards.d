@@ -1,5 +1,4 @@
 /*
-
 In Gothic 2, certain quests reward the player with experience points (XP) 
 determined by a variable called "XP_AMBIENT". 
 The value of this variable depends on the current chapter of the game:
