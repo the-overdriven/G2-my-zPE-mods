@@ -1,5 +1,5 @@
 /*
-Prevents loosing XP due to NPC stealing your kill. If a monster is killed by NPC or other monster, 
+Prevents losing XP due to NPC stealing your kill. If a monster is killed by NPC or other monster, 
 it collapses instead of dying, so that you can finish it off and earn the XP that would otherwise be lost.
 */
 
