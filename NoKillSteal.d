@@ -9,15 +9,19 @@ META
     MergeMode = TRUE
 };
 
-const int GUILDS_SUMMONS[7] =
-{
-    GIL_SUMMONED_GOBBO_SKELETON,
-    GIL_SUMMONED_WOLF,
-    GIL_SUMMONED_SKELETON,
-    GIL_SUMMONED_GOLEM,
-    GIL_SUMMONED_DEMON,
-    GIL_SUMMONEDGUARDIAN,
-    GIL_SUMMONEDZOMBIE
+func int isSummon(var C_NPC npc) {
+    if (Npc_IsInState(npc,zs_mm_rtn_summoned_loop) ||
+           npc.guild == GIL_SUMMONED_GOBBO_SKELETON ||
+           npc.guild == GIL_SUMMONED_WOLF ||
+           npc.guild == GIL_SUMMONED_SKELETON ||
+           npc.guild == GIL_SUMMONED_GOLEM ||
+           npc.guild == GIL_SUMMONED_DEMON ||
+           npc.guild == GIL_SUMMONEDGUARDIAN ||
+           npc.guild == GIL_SUMMONEDZOMBIE) {
+        return TRUE;
+    };
+
+    return FALSE;
 };
 
 func int isMonster(var C_NPC npc)
@@ -76,13 +80,14 @@ func int C_DropUnconscious()
     // self = victim, other = winner
     if (isMonster(self) && (Npc_IsPlayer(other) || other.aivar[AIV_PARTYMEMBER])) {
         // hero and his bros kill monsters always
+
         self.aivar[AIV_INVINCIBLE] = FALSE;
         return FALSE;
     };
 
-    const int victimGuild = self.guild;
-    if (Npc_IsInState(self,zs_mm_rtn_summoned_loop) || Npc_IsInState(other,zs_mm_rtn_summoned_loop) || GUILDS_SUMMONS[victimGuild]) {
+    if (isSummon(other) || isSummon(self)) {
         // summons kill always and are killed always
+
         self.aivar[AIV_INVINCIBLE] = FALSE;
         return FALSE;
     };
@@ -102,6 +107,7 @@ func int C_DropUnconscious()
 
 func int zs_attack_loop()
 {
+
     if(dropDeadIfOneHP(self, other))
     {
         return LOOP_END;
