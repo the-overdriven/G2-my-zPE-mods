@@ -80,21 +80,18 @@ func int C_DropUnconscious()
     // self = victim, other = winner
     if (isMonster(self) && (Npc_IsPlayer(other) || other.aivar[AIV_PARTYMEMBER])) {
         // hero and his bros kill monsters always
-
         self.aivar[AIV_INVINCIBLE] = FALSE;
         return FALSE;
     };
 
     if (isSummon(other) || isSummon(self)) {
         // summons kill always and are killed always
-
         self.aivar[AIV_INVINCIBLE] = FALSE;
         return FALSE;
     };
 
     if (isMonster(self) && !Npc_IsPlayer(other)) {
         // NPC do not kill monsters
-
         if (self.attribute[ATR_HITPOINTS] < 1) {
             self.attribute[ATR_HITPOINTS] = 1;
         };
@@ -107,7 +104,6 @@ func int C_DropUnconscious()
 
 func int zs_attack_loop()
 {
-
     if(dropDeadIfOneHP(self, other))
     {
         return LOOP_END;
