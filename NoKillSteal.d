@@ -9,6 +9,17 @@ META
     MergeMode = TRUE
 };
 
+const int GUILDS_SUMMONS[7] =
+{
+    GIL_SUMMONED_GOBBO_SKELETON,
+    GIL_SUMMONED_WOLF,
+    GIL_SUMMONED_SKELETON,
+    GIL_SUMMONED_GOLEM,
+    GIL_SUMMONED_DEMON,
+    GIL_SUMMONEDGUARDIAN,
+    GIL_SUMMONEDZOMBIE
+};
+
 func int isMonster(var C_NPC npc)
 {
     if (npc.guild > GIL_SEPERATOR_HUM) {
@@ -65,7 +76,13 @@ func int C_DropUnconscious()
     // self = victim, other = winner
     if (isMonster(self) && (Npc_IsPlayer(other) || other.aivar[AIV_PARTYMEMBER])) {
         // hero and his bros kill monsters always
+        self.aivar[AIV_INVINCIBLE] = FALSE;
+        return FALSE;
+    };
 
+    const int victimGuild = self.guild;
+    if (Npc_IsInState(self,zs_mm_rtn_summoned_loop) || Npc_IsInState(other,zs_mm_rtn_summoned_loop) || GUILDS_SUMMONS[victimGuild]) {
+        // summons kill always and are killed always
         self.aivar[AIV_INVINCIBLE] = FALSE;
         return FALSE;
     };
