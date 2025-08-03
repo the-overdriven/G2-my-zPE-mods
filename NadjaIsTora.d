@@ -25,7 +25,7 @@ func void nadja_trigger() {
    NadjaTrigger.AIVariables[0] = 50; // how many times the function should be called
    NadjaTrigger.Delay = 500;         // repeat loop each call by 500ms (default: 200 ms)
    NadjaTrigger.AIVariables[1] = 1;  // foolery type. 1=dance, 2=foolery
-   Hlp_PrintConsole("trigger started");
+   // Hlp_PrintConsole("trigger started");
 };
 
 func int nadja_loop()
@@ -50,7 +50,7 @@ func int nadja_loop()
   // we reset the animation and restart the trigger
   if (NadjaTrigger.AIVariables[0] < 0)
   {
-    Hlp_PrintConsole("trigger loop finished, Nadja move on to next animation");
+    // Hlp_PrintConsole("trigger loop finished, Nadja move on to next animation");
     var C_NPC Nadja; Nadja = Hlp_GetNpc(VLK_435_NADJA);
 
     // reset ongoing animation
@@ -260,7 +260,7 @@ func void zs_TorasFoolery()
   };
 
   NadjaTrigger.AIVariables[0] = 50;
-  Hlp_PrintConsole("zs_TorasFoolery, timer set to 50");
+  // Hlp_PrintConsole("zs_TorasFoolery, timer set to 50");
   
   NadjaTrigger.AIVariables[1] = 0;
 };
@@ -275,7 +275,7 @@ func int zs_TorasFoolery_Loop()
     var int randomAnimation;
     randomAnimation = Hlp_Random(53);
 
-    Hlp_PrintConsole(Str_format("randomAnimation: %i (28+ = dance) ", randomAnimation));
+    // Hlp_PrintConsole(Str_format("randomAnimation: %i (28+ = dance) ", randomAnimation));
 
     if (randomAnimation == NadjaTrigger.AIVariables[2]) {
       // do not repeat the same animation
@@ -398,7 +398,7 @@ func int zs_TorasFoolery_Loop()
       }
       else if ( randomAnimation >= 23)
       {
-        Hlp_PrintConsole("T_MDT_S0_2_S1");
+        // Hlp_PrintConsole("T_MDT_S0_2_S1");
 
         NadjaTrigger.AIVariables[0] = 120;
         Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
@@ -409,7 +409,7 @@ func int zs_TorasFoolery_Loop()
       }
       else if ( randomAnimation >= 19)
       {
-        Hlp_PrintConsole("T_CON_VICTIM");
+        // Hlp_PrintConsole("T_CON_VICTIM");
 
         NadjaTrigger.AIVariables[0] = 50;
         AI_PlayAni(self, "T_CON_VICTIM");
@@ -454,17 +454,20 @@ func int zs_TorasFoolery_Loop()
     };
 
     if ( randomAnimation >= 8 )
-    {
-      NadjaTrigger.AIVariables[0] = 40;
+    { // 8-13
+      if (NadjaTrigger.AIVariables[2] < 8 || NadjaTrigger.AIVariables[2] > 13)
+      {
+        NadjaTrigger.AIVariables[0] = 40;
 
-      AI_SetWalkMode(VLK_435_Nadja,NPC_WALK);
-      AI_GotoWP(self,"NW_CITY_HABOUR_PUFF_IN_01");
-      AI_PlayAni(self, "T_FISTPARADEJUMPB");
-      AI_PlayAni(self, "T_FISTPARADEJUMPB");
+        AI_SetWalkMode(VLK_435_Nadja,NPC_WALK);
+        AI_GotoWP(self,"NW_CITY_HABOUR_PUFF_IN_01");
+        AI_PlayAni(self, "T_FISTPARADEJUMPB");
+        AI_PlayAni(self, "T_FISTPARADEJUMPB");
+      };
     }
     else if ( randomAnimation >= 5 )
     {
-      Hlp_PrintConsole("drink time");
+      // Hlp_PrintConsole("drink time");
 
       NadjaTrigger.AIVariables[0] = 90;
 
@@ -485,7 +488,7 @@ func int zs_TorasFoolery_Loop()
       AI_UseItemToState   (self,ItMi_JOINT,0);     
       AI_PlayAniBS (self,"T_JOINT_S0_2_STAND",BS_ITEMINTERACT); // with puff
 
-      Hlp_PrintConsole("joint time");
+      // Hlp_PrintConsole("joint time");
       Mdl_StartFaceAni(self,"S_FRIENDLY",1,-1);
     };
 
