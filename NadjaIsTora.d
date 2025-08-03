@@ -45,6 +45,8 @@ func int nadja_loop()
     NadjaTrigger.Enabled = 0;
   };
 
+  // Hlp_PrintConsole(Str_format("trigger round: %i", NadjaTrigger.AIVariables[0]));
+
   // Create a loop end check, if the number of
   // available iterations has reached below 0. If it did
   // we reset the animation and restart the trigger
@@ -265,12 +267,21 @@ func void zs_TorasFoolery()
   NadjaTrigger.AIVariables[1] = 0;
 };
 
+func int animateAndRestartLoop(var string animation, var int randNumber)
+{
+  // Hlp_PrintConsole(Str_format("animation: %s", animation));
+  AI_PlayAni(self, animation);
+  Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
+  NadjaTrigger.AIVariables[2] = randNumber; // cant I set a string here?
+  return LOOP_CONTINUE;
+};  
+
 func int zs_TorasFoolery_Loop()
 {
   AI_SetWalkMode(VLK_435_Nadja,NPC_WALK);
 
   var int fooleryType; fooleryType = NadjaTrigger.AIVariables[1];
-  if (NadjaTrigger.AIVariables[0] < 25 || fooleryType <= 1) {    
+  if (NadjaTrigger.AIVariables[0] < 25) { 
     // wait some time before starting next animation
     var int randomAnimation;
     randomAnimation = Hlp_Random(53);
@@ -298,79 +309,80 @@ func int zs_TorasFoolery_Loop()
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE1");
+      return animateAndRestartLoop("S_DANCE1", randomAnimation);
     }
     else if ( randomAnimation >= 50 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE2");
+      return animateAndRestartLoop("S_DANCE2", randomAnimation);
     }
     else if ( randomAnimation >= 48 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE3");
+      return animateAndRestartLoop("S_DANCE3", randomAnimation);
     }
     else if ( randomAnimation >= 46 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE4");
+      return animateAndRestartLoop("S_DANCE4", randomAnimation);
     }
     else if ( randomAnimation >= 44 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE5");
+      return animateAndRestartLoop("S_DANCE5", randomAnimation);
     }
     else if ( randomAnimation >= 42 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE6");
+      return animateAndRestartLoop("S_DANCE6", randomAnimation);
     }
     else if ( randomAnimation >= 40 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE7");
+      return animateAndRestartLoop("S_DANCE7", randomAnimation);
     }
     else if ( randomAnimation >= 38 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE8");
+      return animateAndRestartLoop("S_DANCE8", randomAnimation);
     }
     else if ( randomAnimation >= 36 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE9");
+      return animateAndRestartLoop("S_DANCE9", randomAnimation);
     }
     else if ( randomAnimation >= 34 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE10");
+      return animateAndRestartLoop("S_DANCE10", randomAnimation);
     }
     else if ( randomAnimation >= 32 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE11");
+      return animateAndRestartLoop("S_DANCE11", randomAnimation);
     }
     else if ( randomAnimation >= 30 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE12");
+      return animateAndRestartLoop("S_DANCE12", randomAnimation);
     }
     else if ( randomAnimation >= 28 )
     {
       // NadjaTrigger.AIVariables[0] = 110;
       NadjaTrigger.AIVariables[1] = 1;
-      AI_PlayAni(self, "S_DANCE13");
+
+      return animateAndRestartLoop("S_DANCE13", randomAnimation);
     };
     
     if (NadjaTrigger.AIVariables[2] >= 28 ) {
@@ -378,121 +390,116 @@ func int zs_TorasFoolery_Loop()
       if ( randomAnimation >= 26)
       {
         NadjaTrigger.AIVariables[0] = 50;
-        AI_PlayAni(self, "S_CHESTBIG_S0");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_CHESTBIG_S0", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 25)
       {
         NadjaTrigger.AIVariables[0] = 20;
-        AI_PlayAni(self, "T_SEARCH");
-        AI_PlayAni(self, "C_LOOK_2");
-        NadjaTrigger.AIVariables[1] = 2;
+        // AI_PlayAni(self, "T_SEARCH");
+        return animateAndRestartLoop("C_LOOK_2", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 24)
       {
         NadjaTrigger.AIVariables[0] = 50;
         AI_PlayAni(self, "T_NO");
         AI_PlayAni(self, "C_LOOK_2");
-        AI_PlayAni(self, "T_NO");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("T_NO", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
-      else if ( randomAnimation >= 23)
+      // else if ( randomAnimation >= 23)
+      else if ( randomAnimation >= 14)
       {
-        // Hlp_PrintConsole("T_MDT_S0_2_S1");
-
-        NadjaTrigger.AIVariables[0] = 120;
-        Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
-        AI_PlayAni(self, "T_MDT_S0_2_S1");
-        Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
-        NadjaTrigger.AIVariables[1] = 2;
-        NadjaTrigger.AIVariables[0] = 120;
+        NadjaTrigger.AIVariables[0] = 150;
+        return animateAndRestartLoop("T_MDT_S0_2_S1", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 19)
       {
-        // Hlp_PrintConsole("T_CON_VICTIM");
-
-        NadjaTrigger.AIVariables[0] = 50;
+        NadjaTrigger.AIVariables[0] = 110;
         AI_PlayAni(self, "T_CON_VICTIM");
-        AI_PlayAni(self, "S_CON_VICTIM");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_CON_VICTIM", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 18)
       {
         NadjaTrigger.AIVariables[0] = 100;
-        // AI_PlayAni(self, "T_1HPARADEJUMPB");
+        AI_PlayAni(self, "T_1HPARADEJUMPB");
         AI_PlayAni(self, "T_DEADB");
-        AI_PlayAni(self, "S_DEADB");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_DEADB", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 17)
       {
         NadjaTrigger.AIVariables[0] = 100;
         AI_PlayAni(self, "T_FISTPARADEJUMPB");
         AI_PlayAni(self, "T_DEADB");
-        AI_PlayAni(self, "S_DEADB");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_DEADB", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 16)
       {
-        NadjaTrigger.AIVariables[0] = 50;
+        NadjaTrigger.AIVariables[0] = 80;
         AI_PlayAni(self, "T_PSI_VICTIM");
         AI_PlayAni(self, "S_PSI_VICTIM");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_PSI_VICTIM", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 15)
       {
         NadjaTrigger.AIVariables[0] = 50;
-        AI_PlayAni(self, "S_CONSHOOT");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("S_CONSHOOT", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
       }
       else if ( randomAnimation >= 14)
       {
         NadjaTrigger.AIVariables[0] = 50;
         AI_PlayAni(self, "T_FISTPARADEJUMPB");
-        NadjaTrigger.AIVariables[1] = 2;
+        return animateAndRestartLoop("T_FISTPARADEJUMPB", randomAnimation);
+        // NadjaTrigger.AIVariables[1] = 2;
+      }
+      else if ( randomAnimation >= 8) {
+        if (NadjaTrigger.AIVariables[2] < 8 || NadjaTrigger.AIVariables[2] > 13)
+        {
+          // 8-13
+          NadjaTrigger.AIVariables[0] = 40;
+
+          AI_SetWalkMode(VLK_435_Nadja,NPC_WALK);
+          AI_GotoWP(self,"NW_CITY_HABOUR_PUFF_IN_01");
+          AI_PlayAni(self, "T_FISTPARADEJUMPB");
+          return animateAndRestartLoop("T_FISTPARADEJUMPB", randomAnimation);
+        }; 
       };
     };
 
-    if ( randomAnimation >= 8 )
-    { // 8-13
-      if (NadjaTrigger.AIVariables[2] < 8 || NadjaTrigger.AIVariables[2] > 13)
-      {
-        NadjaTrigger.AIVariables[0] = 40;
-
-        AI_SetWalkMode(VLK_435_Nadja,NPC_WALK);
-        AI_GotoWP(self,"NW_CITY_HABOUR_PUFF_IN_01");
-        AI_PlayAni(self, "T_FISTPARADEJUMPB");
-        AI_PlayAni(self, "T_FISTPARADEJUMPB");
-      };
-    }
-    else if ( randomAnimation >= 5 )
-    {
-      // Hlp_PrintConsole("drink time");
-
-      NadjaTrigger.AIVariables[0] = 90;
+    if ( randomAnimation >= 5 )
+    { // 5-7
+      NadjaTrigger.AIVariables[0] = 60;
 
       CreateInvItem (self,itfo_booze);
       AI_UseItemToState (self,itfo_booze,0);
-      Npc_PlayAni (self,"T_POTION_RANDOM_1");
+      AI_PlayAniBS (self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+
+      return animateAndRestartLoop("T_POTION_RANDOM_1", randomAnimation);
 
       // TODO: fix: if joint animation happens after drinking it gets stuck or item disappears
 
       NadjaTrigger.AIVariables[1] = 2;
     }
     else
-    {
+    { // 1-4
       NadjaTrigger.AIVariables[1] = 2;
       NadjaTrigger.AIVariables[0] = 100;
 
       CreateInvItem (self,ItMi_Joint);   
+      Mdl_StartFaceAni(self,"S_FRIENDLY",1,-1);
+
       AI_UseItemToState   (self,ItMi_JOINT,0);     
       AI_PlayAniBS (self,"T_JOINT_S0_2_STAND",BS_ITEMINTERACT); // with puff
 
-      // Hlp_PrintConsole("joint time");
-      Mdl_StartFaceAni(self,"S_FRIENDLY",1,-1);
+      return animateAndRestartLoop("T_JOINT_S0_2_STAND", randomAnimation);
     };
-
-    NadjaTrigger.AIVariables[2] = randomAnimation;
 
     return LOOP_CONTINUE;
   };
