@@ -58,7 +58,7 @@ func int nadja_loop()
     // reset ongoing animation
     Npc_PlayAni(Nadja, "T_WALKSTRAFEL");
     Npc_StopAni(Nadja, "T_WALKSTRAFEL");
-    NadjaTrigger.AIVariables[0] = 50;
+    NadjaTrigger.AIVariables[0] = 10;
   };
 
   NadjaTrigger.AIVariables[0] -= 1; // Reduce number of remaining repeats
@@ -408,8 +408,7 @@ func int zs_TorasFoolery_Loop()
         return animateAndRestartLoop("T_NO", randomAnimation);
         // NadjaTrigger.AIVariables[1] = 2;
       }
-      // else if ( randomAnimation >= 23)
-      else if ( randomAnimation >= 14)
+      else if ( randomAnimation >= 23)
       {
         NadjaTrigger.AIVariables[0] = 150;
         return animateAndRestartLoop("T_MDT_S0_2_S1", randomAnimation);
