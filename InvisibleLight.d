@@ -9,17 +9,47 @@ META
     MergeMode = TRUE
 };
 
-INSTANCE MFX_LIGHT_INIT (C_PARTICLEFX) {
-    MFX_LIGHT_INIT_OLD();
-};
-
-INSTANCE MFX_LIGHT_ORIGIN (C_PARTICLEFX) {
-    MFX_LIGHT_ORIGIN_OLD();
-    vistexcolorstart_s = "0";
-};
-
-INSTANCE MFX_LIGHT_ORIGIN_LESS (C_PARTICLEFX)
+test MFX_LIGHT_INIT
 {
-    MFX_LIGHT_ORIGIN_LESS_OLD();
-    vistexcolorstart_s = "0";
+    INSTANCE MFX_LIGHT_INIT (C_PARTICLEFX) {
+        MFX_LIGHT_INIT_OLD();
+        vistexcolorstart_s = "0";
+    };
+};
+
+test MFX_LIGHT_ORIGIN
+{
+    INSTANCE MFX_LIGHT_ORIGIN (C_PARTICLEFX) {
+        MFX_LIGHT_ORIGIN_OLD();
+        vistexcolorstart_s = "0";
+    };
+};
+
+test MFX_LIGHT_ORIGIN_LESS
+{
+    INSTANCE MFX_LIGHT_ORIGIN_LESS (C_PARTICLEFX)
+    {
+        MFX_LIGHT_ORIGIN_LESS_OLD();
+        vistexcolorstart_s = "0";
+    };
+};
+
+test MFX_PALLIGHT_INIT
+{
+    INSTANCE MFX_PALLIGHT_INIT (C_PARTICLEFX)
+    {
+        MFX_PALLIGHT_INIT_OLD();
+        vistexcolorstart_s = "0";
+        vistexcolorend_s = "0";
+    };
+};
+
+test MFX_PALLIGHT_ORIGIN
+{
+    INSTANCE MFX_PALLIGHT_ORIGIN (C_PARTICLEFX)
+    {
+        MFX_PALLIGHT_ORIGIN_OLD();
+        vistexcolorstart_s = "0";
+        vistexcolorend_s = "0";
+    };
 };
